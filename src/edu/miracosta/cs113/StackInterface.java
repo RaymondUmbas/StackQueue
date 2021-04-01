@@ -30,4 +30,12 @@ public interface StackInterface<E> {
      * @return item that was pushed
      */
     public E push(E obj);
+
+	/**
+	 * Pushes an item onto the top of the stack and returns the item pushed.
+	 *
+	 * @param obj object to push onto top of stack
+	 * @return item that was pushed
+	 */
+
 }

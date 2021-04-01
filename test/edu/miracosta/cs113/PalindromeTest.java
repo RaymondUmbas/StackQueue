@@ -40,12 +40,46 @@ public class PalindromeTest {
      * @param s a string comprised of any character
      * @return returns true if a palindrome (ignoring whitespace and case sensitivity), false otherwise
      */
-    private boolean isPalindrome(String s) {
+    
+	private boolean isPalindrome(String s) throws IllegalArgumentException{
 
         // TODO:
         // Implement this method body using your ArrayListStack. Be mindful of your algorithm!
-        return false;
-
+		if(s == null)
+    		throw new IllegalArgumentException();
+		
+		StackInterface<Character> front = new ArrayListStack<Character>(); 
+    	StackInterface<Character> back = new ArrayListStack<Character>();  
+    	String string = s.toLowerCase().replaceAll("\\s", "");
+    	
+    	
+    	
+    	if(s.length()==1)
+    		return true;
+    	
+    	int size = string.length();
+    	for(int i = 0; i < size; i++) //transfer String to stack
+    		front.push(string.charAt(i));
+    	
+    	for(int i = 0; i < size/2; i++) //transfer second half of string to back
+    		back.push(front.pop());
+    	
+    	if(size%2 == 1) //if odd size, ignore middle character
+    		front.pop();
+    	
+    	for(int i = 0; i < size/2; i++)
+    	{	
+    		if(front.peek() == back.peek())
+    		{
+    			front.pop();
+    			back.pop();
+    		}
+    		else
+    			return false;
+    	}	
+    	
+    	return true;
+    	
     } // End of method isPalindrome
 
     @Test
